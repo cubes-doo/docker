@@ -1,5 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+cd $(dirname "$0")
+
+set -e errexit
+set -o pipefail
 set -a
-. "$(cd $(dirname "$0"); pwd)/.env"
+. ".env"
 set +a
 docker-compose up -d

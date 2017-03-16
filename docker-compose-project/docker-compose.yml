@@ -1,9 +1,9 @@
 db:
-    container_name: "${PROJECT_NAME}_db"
+    container_name: "${COMPOSE_PROJECT_NAME}_db"
     image: mariadb:latest
     env_file: .env
 webserver:
-    container_name: "${PROJECT_NAME}_webserver"
+    container_name: "${COMPOSE_PROJECT_NAME}_webserver"
     image: cubesdoo/php
     ports:
         - "$EXTERNAL_PORT:80"

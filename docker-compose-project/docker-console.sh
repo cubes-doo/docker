@@ -15,4 +15,4 @@ set -a
 . ".env"
 set +a
 
-docker exec -it ${COMPOSE_PROJECT_NAME}_${CONSOLE_CONTAINER} bash
+docker exec -u 1000 -it ${COMPOSE_PROJECT_NAME}_${CONSOLE_CONTAINER} bash

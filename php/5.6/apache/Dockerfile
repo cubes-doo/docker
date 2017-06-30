@@ -1,7 +1,10 @@
 FROM php:5.6-apache
 
 RUN groupadd -f -g 1000 localgroup \
-	&& useradd -u 1000 -g 1000 localuser
+	&& useradd -u 1000 -g 1000 localuser \
+	&& mkdir -p /home/localuser \
+	&& chown -r /home/localuser \
+	&& echo -e "COLUMNS=1024\nLINES=50" > /home/localuser/.bashrc
 
 RUN apt-get update \
 	&& apt-get install -y \

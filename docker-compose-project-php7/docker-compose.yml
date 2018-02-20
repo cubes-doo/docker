@@ -23,7 +23,6 @@ services:
         working_dir: /opt
         links:
             - db
-            - redis
         env_file: .env
     nginx:
         container_name: "${COMPOSE_PROJECT_NAME}_nginx"

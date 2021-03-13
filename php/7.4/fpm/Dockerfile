@@ -33,6 +33,10 @@ RUN groupadd -f -g $localgroup localgroup \
     simplexml \
     soap \
 \
+&& apt-get -y install libgmp-dev \
+&& docker-php-ext-install -j$(nproc) \
+    gmp \
+\
 && apt-get -y install libmagickwand-dev \
 && printf "\n" | pecl install imagick \
 && docker-php-ext-enable imagick \

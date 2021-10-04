@@ -20,6 +20,8 @@ RUN groupadd -f -g $localgroup localgroup \
 && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
 && docker-php-ext-install -j$(nproc) gd \
 \
+&& docker-php-ext-install -j$(nproc) exif \
+\
 && apt-get install -y \
     libzip-dev \
 && docker-php-ext-install -j$(nproc) \

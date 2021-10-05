@@ -11,6 +11,8 @@ RUN groupadd -f -g $localgroup localgroup \
 && printf "[www]\nuser=localuser\ngroup=localgroup\n" | tee /usr/local/etc/php-fpm.d/zz-local.conf \
 \
 && apt-get update \
+&& apt install ca-certificates \
+&& apt install libgnutls30 \
 \
 && apt-get install -y \
     libfreetype6-dev \
@@ -71,5 +73,5 @@ RUN groupadd -f -g $localgroup localgroup \
 \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 \
-&& curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+&& curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
 && apt-get install -y nodejs

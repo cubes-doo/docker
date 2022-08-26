@@ -57,6 +57,10 @@ RUN groupadd -f -g $localgroup localgroup \
 && printf "\n" | pecl install yaml \
 && docker-php-ext-enable yaml \
 \
+&& apt-get install -y libc-client-dev libkrb5-dev \
+&& docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+&& docker-php-ext-install -j$(nproc) imap \
+\
 && apt-get install -y \
     fontconfig \
     libfreetype6 \

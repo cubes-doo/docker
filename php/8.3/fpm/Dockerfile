@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-buster
+FROM php:8.3-fpm
 
 ARG localuser=1000
 ARG localgroup=1000

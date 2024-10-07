@@ -10,8 +10,11 @@ RUN groupadd -f -g $localgroup localgroup \
 && printf "COLUMNS=1024\nLINES=50\n" | tee /home/localuser/.bashrc \
 \
 && apt-get update \
+&& apt-get install wget \
 && apt install ca-certificates \
 && apt install libgnutls30 \
+&& wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+&& dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
 \
 && docker-php-ext-install -j$(nproc) opcache \
 && apt-get install -y \
@@ -40,10 +43,6 @@ RUN groupadd -f -g $localgroup localgroup \
 && apt-get -y install libgmp-dev \
 && docker-php-ext-install -j$(nproc) \
     gmp \
-\
-&& apt-get -y install libmagickwand-dev \
-&& printf "\n" | pecl install imagick \
-&& docker-php-ext-enable imagick \
 \
 && apt-get -y install libssl-dev \
 && printf "\n" | pecl install mongodb \

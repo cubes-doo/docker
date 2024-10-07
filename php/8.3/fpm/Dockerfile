@@ -11,8 +11,11 @@ RUN groupadd -f -g $localgroup localgroup \
 && printf "[www]\nuser=localuser\ngroup=localgroup\n" | tee /usr/local/etc/php-fpm.d/zz-local.conf \
 \
 && apt-get update \
+&& apt-get install wget \
 && apt install ca-certificates \
 && apt install libgnutls30 \
+&& wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+&& dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
 \
 && docker-php-ext-install -j$(nproc) opcache \
 && apt-get install -y \
@@ -42,14 +45,10 @@ RUN groupadd -f -g $localgroup localgroup \
 && docker-php-ext-install -j$(nproc) \
     gmp \
 \
-&& apt-get -y install libmagickwand-dev \
-&& printf "\n" | pecl install imagick \
-&& docker-php-ext-enable imagick \
-\
-&& apt-get -y install libssl-dev \
-&& printf "\n" | pecl install mongodb \
-&& docker-php-ext-enable mongodb \
-\
+ && apt-get -y install libssl-dev \
+ && printf "\n" | pecl install mongodb \
+ && docker-php-ext-enable mongodb \
+ \
 && printf "\n" | pecl install redis \
 && docker-php-ext-enable redis \
 \

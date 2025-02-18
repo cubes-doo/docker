@@ -28,6 +28,7 @@ RUN groupadd -f -g $localgroup localgroup \
 && docker-php-ext-install -j$(nproc) exif \
 \
 && apt-get install -y \
+    libicu-dev \
     libzip-dev \
 && docker-php-ext-install -j$(nproc) \
     bcmath \

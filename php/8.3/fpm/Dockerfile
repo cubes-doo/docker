@@ -35,6 +35,7 @@ RUN groupadd -f -g $localgroup localgroup \
     mysqli \
     pdo_mysql \
     zip \
+    intl \
 \
 && apt-get -y install libxml2-dev \
 && docker-php-ext-install -j$(nproc) \

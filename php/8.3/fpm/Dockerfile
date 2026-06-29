@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.3-fpm-bookworm
 
 ARG localuser=1000
 ARG localgroup=1000
@@ -10,20 +10,13 @@ RUN groupadd -f -g $localgroup localgroup \
 && printf "COLUMNS=1024\nLINES=50\n" | tee /home/localuser/.bashrc \
 && printf "[www]\nuser=localuser\ngroup=localgroup\n" | tee /usr/local/etc/php-fpm.d/zz-local.conf \
 \
-#&& apt-get update \
-#&& apt-get install wget \
-#&& apt install ca-certificates \
-#&& apt install libgnutls30 \
-#&& wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
-#&& dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
-#\
 && apt-get update \
-&& apt-get install -y \
-    wget \
-    ca-certificates \
-    libgnutls30 \
-    git \
-    unzip \  
+&& apt-get install wget \
+&& apt install ca-certificates \
+&& apt install libgnutls30 \
+&& wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+&& dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+\
 && docker-php-ext-install -j$(nproc) opcache \
 && apt-get install -y \
     libfreetype6-dev \

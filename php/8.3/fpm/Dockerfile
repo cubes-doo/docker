@@ -82,7 +82,7 @@ RUN groupadd -f -g $localgroup localgroup \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 \
 && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-&& apt-get install -y nodejs
+&& apt-get install -y nodejs \
 && apt-get update && apt-get install -y \
     git \
     unzip
